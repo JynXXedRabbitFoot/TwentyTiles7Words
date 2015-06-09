@@ -1,0 +1,15 @@
+MAINSTREAM,Generally popular	
+ZENITH,The highest point reached	
+ATRIUM,Open patio	
+HELPLESS,not able to defend oneself	
+TIMEPIECE,Watch or clock	
+EXERT,apply as force 
+PARADISE,perfect place	
+HYDROGEN,The first element	
+COAX,Gently encourage	
+ARMCHAIR,Living room furniture	
+CHERRY,Small red fruit	
+MEGABYTE,Computer memory unit	
+GLUTEN,substance in wheat	
+MEMOIR,personal narrative	
+COUNTDOWN,launch preceder	

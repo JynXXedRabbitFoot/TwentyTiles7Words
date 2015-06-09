@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TwentyTiles7Words</string>
+    <string name="dummy_content">dummy_content</string>
+    <string name="languageButton">Language</string>
+    <string name="selectedLanguage">English</string>
+    <string name="newGameButton">New Game</string>
+    <string name="clearGuess">X</string>
+    <string name="guessWord">Guess</string>
+    <string name="builtWord"></string>
+    <string name="clueOne">1  |           | 0 letters</string>
+    <string name="clueTwo">2  |           | 0 letters</string>
+    <string name="clueThree">3  |           | 0 letters</string>
+    <string name="clueFour">4  |           | 0 letters</string>
+    <string name="clueFive">5  |           | 0 letters</string>
+    <string name="clueSix">6  |           | 0 letters</string>
+    <string name="clueSeven">7  |           | 0 letters</string>
+</resources>
