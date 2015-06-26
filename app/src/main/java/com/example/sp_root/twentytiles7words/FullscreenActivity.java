@@ -82,6 +82,8 @@ public class FullscreenActivity extends Activity {
     String[] files;
     ArrayList<Button> tileButtons;
 
+    boolean[] guessedCorrectly = new boolean[7];
+
     private ArrayList<String> tiles;
     private ArrayList<ArrayList<String>> wordsAndClues;
     private Typeface font;
@@ -125,12 +127,45 @@ public class FullscreenActivity extends Activity {
         clearGuess.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                              textView1.setText("");
+                textView1.setText("");
+
                 reloadTiles(false);
 
             }
         });
         guessWord = (Button) this.findViewById(R.id.guessWord);
+        guessWord.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                String guess = textView1.getText().toString();
+                for (int i = 0; i < wordsAndClues.size(); i++) {
+                    if (!guessedCorrectly[i]) {
+                        if (guess.equals(wordsAndClues.get(i).get(0))) {
+                            guessedCorrectly[i] = true;
+                            //check for win
+                            boolean won = true;
+                            for (int j = 0; j < guessedCorrectly.length; j++) {
+                                if (!guessedCorrectly[j]) {
+                                    won = false;
+                                }
+                            }
+                            if (won) {
+                                makeToast("Congratulations, You won!");
+                            }
+                            for (Button b : tileButtons) {
+                                if (b.getVisibility() == View.INVISIBLE) {
+                                    b.setText("");
+                                }
+                            }
+                        }
+                    }
+                }
+                textView1.setText("");
+                loadClues();
+                reloadTiles(false);
+
+            }
+        });
 
         tileButtons = new ArrayList<Button>();
         tileButtons.add((Button) this.findViewById(R.id.tile0));
@@ -300,6 +335,9 @@ public class FullscreenActivity extends Activity {
         font = language.getFont();
         wordsAndClues = controller.getWordsAndClues();
         tiles = controller.getTiles();
+        for (int i = 0; i < tileButtons.size(); i++) {
+            tileButtons.get(i).setText(tiles.get(i));
+        }
         loadClues();
         reloadTiles(true);
     }
@@ -310,16 +348,16 @@ public class FullscreenActivity extends Activity {
 	 */
     private void reloadTiles(boolean shuffle) {
         if (shuffle) {
-            Collections.shuffle(tiles);
+            Collections.shuffle(tileButtons);
         }
         for (int i = 0; i < tileButtons.size(); i++) {
-            if ("".equals(tiles.get(i))) {
+            if ("".equals(tileButtons.get(i).getText().toString())) {
                 tileButtons.get(i).setVisibility(View.INVISIBLE);
             } else {
 
                 Button b = tileButtons.get(i);
                 b.setTypeface(language.font);
-                b.setText(tiles.get(i));
+                b.setText(tileButtons.get(i).getText().toString());
                 b.setVisibility(View.VISIBLE);
                 b.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -346,11 +384,12 @@ public class FullscreenActivity extends Activity {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < clues.size(); i++) {
             sb.append(" " + i + " |  ");
-            sb.append(wordsAndClues.get(i).get(1));
-            String cluesize = "  |  ("
-                    + language.splitToLogicalCharacters(
-                    wordsAndClues.get(i).get(0)).size() + ") Letters";
-            sb.append(cluesize);
+            sb.append(wordsAndClues.get(i).get(1) + "  |  ");
+            if (!guessedCorrectly[i]) {
+                sb.append("(" + language.splitToLogicalCharacters(wordsAndClues.get(i).get(0)).size() + ") Letters");
+            } else {
+                sb.append(wordsAndClues.get(i).get(0));
+            }
             clues.get(i).setText(sb.toString());
             sb.setLength(0);
         }

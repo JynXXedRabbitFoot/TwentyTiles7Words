@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/clueOne"
-                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
         </TableRow>
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/clueTwo"
-                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
         </TableRow>
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/clueThree"
-                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
         </TableRow>
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/clueFour"
-                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
         </TableRow>
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/clueFive"
-                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
         </TableRow>
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/clueSix"
-                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
         </TableRow>
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/clueSeven"
-                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
         </TableRow>
