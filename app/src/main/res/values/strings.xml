@@ -7,11 +7,27 @@
     <string name="clearGuess">X</string>
     <string name="guessWord">Guess</string>
     <string name="builtWord"></string>
-    <string name="clueOne">1  |           | 0 letters</string>
-    <string name="clueTwo">2  |           | 0 letters</string>
-    <string name="clueThree">3  |           | 0 letters</string>
-    <string name="clueFour">4  |           | 0 letters</string>
-    <string name="clueFive">5  |           | 0 letters</string>
-    <string name="clueSix">6  |           | 0 letters</string>
-    <string name="clueSeven">7  |           | 0 letters</string>
+    <string name="clueOne">clue 1</string>
+    <string name="clueTwo">clue 2</string>
+    <string name="clueThree">clue 3</string>
+    <string name="clueFour">clue 4</string>
+    <string name="clueFive">clue 5</string>
+    <string name="clueSix">clue 6s</string>
+    <string name="clueSeven">clue 7</string>
+
+    <string name="one">1</string>
+    <string name="two"> 2 </string>
+    <string name="three"> 3 </string>
+    <string name="four"> 4 </string>
+    <string name="five"> 5 </string>
+    <string name="six"> 6 </string>
+    <string name="seven"> 7 </string>
+
+    <string name="lettersOne"> (x)Letters </string>
+    <string name="lettersTwo"> (x)Letters </string>
+    <string name="lettersThree"> (x)Letters </string>
+    <string name="lettersFour"> (x)Letters </string>
+    <string name="lettersFive"> (x)Letters </string>
+    <string name="lettersSix"> (x)Letters </string>
+    <string name="lettersSeven"> (x)Letters </string>
 </resources>

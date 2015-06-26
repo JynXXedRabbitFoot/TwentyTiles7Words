@@ -33,13 +33,34 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/clueOne"
-                android:layout_width="wrap_content"
+                android:id="@+id/one"
+                android:layout_width= "0px"
+                android:layout_weight="0.05"
                 android:layout_height="wrap_content"
+                android:text="@string/one"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/clueOne"
+                android:layout_width= "0px"
+                android:layout_weight="0.7"
+                android:layout_height="fill_parent"
                 android:text="@string/clueOne"
                 android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/lettersOne"
+                android:layout_width= "0px"
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:text="@string/lettersOne"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
         </TableRow>
 
         <TableRow
@@ -47,13 +68,34 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/clueTwo"
-                android:layout_width="wrap_content"
+                android:id="@+id/two"
+                android:layout_width= "0px"
+                android:layout_weight="0.05"
                 android:layout_height="wrap_content"
+                android:text="@string/two"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/clueTwo"
+                android:layout_width= "0px"
+                android:layout_weight="0.7"
+                android:layout_height="fill_parent"
                 android:text="@string/clueTwo"
                 android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/lettersTwo"
+                android:layout_width= "0px"
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:text="@string/lettersTwo"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
         </TableRow>
 
         <TableRow
@@ -61,13 +103,34 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/clueThree"
-                android:layout_width="wrap_content"
+                android:id="@+id/three"
+                android:layout_width= "0px"
+                android:layout_weight="0.05"
                 android:layout_height="wrap_content"
+                android:text="@string/three"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/clueThree"
+                android:layout_width= "0px"
+                android:layout_weight="0.7"
+                android:layout_height="fill_parent"
                 android:text="@string/clueThree"
                 android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/lettersThree"
+                android:layout_width= "0px"
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:text="@string/lettersThree"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
         </TableRow>
 
         <TableRow
@@ -75,13 +138,34 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/clueFour"
-                android:layout_width="wrap_content"
+                android:id="@+id/four"
+                android:layout_width= "0px"
+                android:layout_weight="0.05"
                 android:layout_height="wrap_content"
+                android:text="@string/four"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/clueFour"
+                android:layout_width= "0px"
+                android:layout_weight="0.7"
+                android:layout_height="fill_parent"
                 android:text="@string/clueFour"
                 android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/lettersFour"
+                android:layout_width= "0px"
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:text="@string/lettersFour"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
         </TableRow>
 
         <TableRow
@@ -89,24 +173,31 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/clueFive"
-                android:layout_width="wrap_content"
+                android:id="@+id/five"
+                android:layout_width= "0px"
+                android:layout_weight="0.05"
                 android:layout_height="wrap_content"
+                android:text="@string/five"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/clueFive"
+                android:layout_width= "0px"
+                android:layout_weight="0.7"
+                android:layout_height="fill_parent"
                 android:text="@string/clueFive"
                 android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/clueSix"
-                android:layout_width="wrap_content"
+                android:id="@+id/lettersFive"
+                android:layout_width= "0px"
+                android:layout_weight="0.25"
                 android:layout_height="wrap_content"
-                android:text="@string/clueSix"
+                android:text="@string/lettersFive"
                 android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />
@@ -117,10 +208,66 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/clueSeven"
-                android:layout_width="wrap_content"
+                android:id="@+id/six"
+                android:layout_width= "0px"
+                android:layout_weight="0.05"
                 android:layout_height="wrap_content"
+                android:text="@string/six"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/clueSix"
+                android:layout_width= "0px"
+                android:layout_weight="0.7"
+                android:layout_height="fill_parent"
+                android:text="@string/clueSix"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/lettersSix"
+                android:layout_width= "0px"
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:text="@string/lettersSix"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/seven"
+                android:layout_width= "0px"
+                android:layout_weight="0.05"
+                android:layout_height="wrap_content"
+                android:text="@string/seven"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/clueSeven"
+                android:layout_width= "0px"
+                android:layout_weight="0.7"
+                android:layout_height="fill_parent"
                 android:text="@string/clueSeven"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:layout_span="4"
+                android:paddingStart="10px" />
+
+            <TextView
+                android:id="@+id/lettersSeven"
+                android:layout_width= "0px"
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:text="@string/lettersSeven"
                 android:textAppearance="?android:attr/textAppearanceMediumInverse"
                 android:layout_span="4"
                 android:paddingStart="10px" />

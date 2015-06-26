@@ -61,16 +61,12 @@ public class FullscreenActivity extends Activity {
     public static Typeface teTextFont;
     private Controller controller;
 
-    TextView clueOne;
-    TextView clueTwo;
-    TextView clueThree;
-    TextView clueFour;
-    TextView clueFive;
-    TextView clueSix;
-    TextView clueSeven;
+    ArrayList<TextView> clues;
+    ArrayList<TextView> letters;
+
     TextView textView1;
 
-    ArrayList<TextView> clues;
+
 
     Button clearGuess;
     Button guessWord;
@@ -121,6 +117,15 @@ public class FullscreenActivity extends Activity {
         clues.add((TextView) this.findViewById(R.id.clueFive));
         clues.add((TextView) this.findViewById(R.id.clueSix));
         clues.add((TextView) this.findViewById(R.id.clueSeven));
+
+        letters = new ArrayList<TextView>();
+        letters.add((TextView) this.findViewById(R.id.lettersOne));
+        letters.add((TextView) this.findViewById(R.id.lettersTwo));
+        letters.add((TextView) this.findViewById(R.id.lettersThree));
+        letters.add((TextView) this.findViewById(R.id.lettersFour));
+        letters.add((TextView) this.findViewById(R.id.lettersFive));
+        letters.add((TextView) this.findViewById(R.id.lettersSix));
+        letters.add((TextView) this.findViewById(R.id.lettersSeven));
 
         textView1 = (TextView) this.findViewById(R.id.builtWord);
         clearGuess = (Button) this.findViewById(R.id.clearGuess);
@@ -381,17 +386,13 @@ public class FullscreenActivity extends Activity {
      * Load the clues to the screen.
 	 */
     private void loadClues() {
-        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < clues.size(); i++) {
-            sb.append(" " + i + " |  ");
-            sb.append(wordsAndClues.get(i).get(1) + "  |  ");
+           clues.get(i).setText(wordsAndClues.get(i).get(1));
             if (!guessedCorrectly[i]) {
-                sb.append("(" + language.splitToLogicalCharacters(wordsAndClues.get(i).get(0)).size() + ") Letters");
+                letters.get(i).setText("(" + language.splitToLogicalCharacters(wordsAndClues.get(i).get(0)).size() + ") Letters");
             } else {
-                sb.append(wordsAndClues.get(i).get(0));
+                letters.get(i).setText(wordsAndClues.get(i).get(0));
             }
-            clues.get(i).setText(sb.toString());
-            sb.setLength(0);
         }
     }
 
