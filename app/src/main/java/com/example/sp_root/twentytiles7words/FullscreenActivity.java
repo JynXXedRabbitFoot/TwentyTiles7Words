@@ -66,8 +66,6 @@ public class FullscreenActivity extends Activity {
 
     TextView textView1;
 
-
-
     Button clearGuess;
     Button guessWord;
     Button languageButton;
@@ -168,7 +166,6 @@ public class FullscreenActivity extends Activity {
                 textView1.setText("");
                 loadClues();
                 reloadTiles(false);
-
             }
         });
 
@@ -195,9 +192,27 @@ public class FullscreenActivity extends Activity {
         tileButtons.add((Button) this.findViewById(R.id.tile19));
 
         languageButton = (Button) this.findViewById(R.id.languageButton);
+        languageButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                switch (selectedLanguage.getText().toString()) {
+                    case "Telugu":
+                        selectedLanguage.setText("English");
+                        break;
+                    default:
+                        selectedLanguage.setText("Telugu");
+                }
+            }
+        });
+
         selectedLanguage = (TextView) this.findViewById(R.id.selectedLanguage);
         newGameButton = (Button) this.findViewById(R.id.newGameButton);
-
+        newGameButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                newGame();
+            }
+        });
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
@@ -387,7 +402,7 @@ public class FullscreenActivity extends Activity {
 	 */
     private void loadClues() {
         for (int i = 0; i < clues.size(); i++) {
-           clues.get(i).setText(wordsAndClues.get(i).get(1));
+            clues.get(i).setText(wordsAndClues.get(i).get(1));
             if (!guessedCorrectly[i]) {
                 letters.get(i).setText("(" + language.splitToLogicalCharacters(wordsAndClues.get(i).get(0)).size() + ") Letters");
             } else {
