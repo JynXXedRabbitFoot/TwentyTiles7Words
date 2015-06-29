@@ -51,7 +51,6 @@ consonant h  0C39
 consonant L  0C33
 consonant ~r 0C31
 
-
 halant ~ 0C4D
 
 other @( 0C01

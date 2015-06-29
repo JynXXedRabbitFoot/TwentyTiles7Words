@@ -3,36 +3,28 @@ package com.example.sp_root.twentytiles7words;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Splits 7 words into 20 tiles containing the words in a broken form.
+ *
+ * @author Dan KRuse
+ * @precondition - Each word must be split into an ArrayList<String> of
+ * logical characters.
+ * @precondition - There must be exactly 7 words passed in.
+ * @precondition - Each word must contain between 2 and 16 logical
+ * characters inclusive.
+ * @precondition - The combination of words needs to contain between 20 and
+ * 80 logical characters total, inclusive.
+ */
 public class WordsToTilesSplitter {
-    /**
-     * Splits 7 words into 20 tiles containing the words in a broken form.
-     *
-     * @precondition - Each word must be split into an ArrayList<String> of
-     *               logical characters.
-     * @precondition - There must be exactly 7 words passed in.
-     * @precondition - Each word must contain between 2 and 16 logical
-     *               characters inclusive.
-     * @precondition - The combination of words needs to contain between 20 and
-     *               80 logical characters total, inclusive.
-     *
-     * @param wordsAsTokens
-     *            - The words as tokens to be split into tiles.
-     * @return An ArrayList<String> of tiles.
-     * @throws IllegalArgumentException
-     *             - Indicates the words passed in are causing a problem.
-     * @author Dan KRuse
-     */
+    private static Controller controller = Controller.instance();
 
     /**
      * Creates Tiles from a list of words
+     *
      * @param wordsAsTokens - The words to be separated into tiles - Must be tokenized to logical characters
      * @return 20 strings in a list
      * @throws IllegalArgumentException - input did not meet specifications.
-     * @author Dan KRuse
      */
-
-    private static Controller controller = Controller.instance();
-
     public static ArrayList<String> getTiles(
             ArrayList<ArrayList<String>> wordsAsTokens)
             throws IllegalArgumentException {

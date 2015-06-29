@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-
+/**
+ * The model for a 20tiles7words game
+ *
+ * @author Dan Kruse
+ */
 public class Model7LW {
     // Hold the words and clues as they are loaded from a file.
     private ArrayList<ArrayList<String>> wordsAndClues;
@@ -39,7 +43,7 @@ public class Model7LW {
     }
 
     /*
-     * Loads the words and clues from a file.
+     * Loads the words and clues from a seed file.
      */
     private void loadWords() throws Exception {
         wordsAndClues = new ArrayList<ArrayList<String>>();
@@ -85,11 +89,16 @@ public class Model7LW {
             String tempString = removeSpaces(wordsAndClues.get(i).get(0));
             wordsAndClues.get(i).set(0, tempString);
         }
-
         br.close();
         fis.close();
     }
 
+    /*
+     * removes spaces from a passed string
+     *
+     * @param arg The string to remove spaces from
+     * @return - The resulting string.
+     */
     private String removeSpaces(String arg) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arg.length(); i++) {

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * An extension of language that implements its abstract methods.
  *
- * @author Dan Kruse 9-24-14
+ * @author Dan Kruse
  */
 public class English extends Language {
 
@@ -15,8 +15,6 @@ public class English extends Language {
         this.languageAbbreviation = "EN";
         this.helpMessage = Config.enHELPMESSAGE;
         this.winMessage = Config.enWINMESSAGE;
-        //this.seedFile = getClass().getClassLoader().getResourceAsStream(
-        //	"EN/words.txt");
         this.seedFile = FullscreenActivity.assetToInputStream("EN/words.txt");
     }
 

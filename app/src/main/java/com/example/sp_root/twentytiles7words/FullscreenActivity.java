@@ -7,6 +7,8 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -24,10 +26,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
+ * Main Activity for playing the game
  *
- * @see SystemUiHider
+ * @author Dan Kruse
  */
 public class FullscreenActivity extends Activity {
     /**
@@ -82,14 +83,14 @@ public class FullscreenActivity extends Activity {
     private ArrayList<ArrayList<String>> wordsAndClues;
     private Typeface font;
 
+    TextView hl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
 
-        //TODO
-        // //final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
 
         //File file = new File("TE");
@@ -100,10 +101,6 @@ public class FullscreenActivity extends Activity {
             e.printStackTrace();
         }
         String s = readAsset("EN/words.txt");
-        //AssetManager assets = getAssets();
-        //File a = new File(assets);
-        // boolean exists = file.exists();
-        //boolean isDir = file.isDirectory();
         teTextFont = Typeface.createFromAsset(getAssets(), "TE/Gidugu.ttf");
 
         //Load buttons & textViews here
@@ -131,7 +128,6 @@ public class FullscreenActivity extends Activity {
             public void onClick(View v) {
                 // Perform action on click
                 textView1.setText("");
-
                 reloadTiles(false);
 
             }
@@ -140,32 +136,7 @@ public class FullscreenActivity extends Activity {
         guessWord.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                String guess = textView1.getText().toString();
-                for (int i = 0; i < wordsAndClues.size(); i++) {
-                    if (!guessedCorrectly[i]) {
-                        if (guess.equals(wordsAndClues.get(i).get(0))) {
-                            guessedCorrectly[i] = true;
-                            //check for win
-                            boolean won = true;
-                            for (int j = 0; j < guessedCorrectly.length; j++) {
-                                if (!guessedCorrectly[j]) {
-                                    won = false;
-                                }
-                            }
-                            if (won) {
-                                makeToast("Congratulations, You won!");
-                            }
-                            for (Button b : tileButtons) {
-                                if (b.getVisibility() == View.INVISIBLE) {
-                                    b.setText("");
-                                }
-                            }
-                        }
-                    }
-                }
-                textView1.setText("");
-                loadClues();
-                reloadTiles(false);
+                guess();
             }
         });
 
@@ -213,8 +184,13 @@ public class FullscreenActivity extends Activity {
                 newGame();
             }
         });
-        // Set up an instance of SystemUiHider to control the system UI for
-        // this activity.
+
+        hl = (TextView) findViewById(R.id.hyperLink);
+        hl.setClickable(true);
+        hl.setMovementMethod(LinkMovementMethod.getInstance());
+        String text = "<a href='https://github.com/JynXXedRabbitFoot/TwentyTiles7Words'> GetHub Repository </a>";
+        hl.setText(Html.fromHtml(text));
+        // Set up an instance of SystemUiHider to control the system UI for this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
         mSystemUiHider.setup();
         mSystemUiHider
@@ -232,14 +208,12 @@ public class FullscreenActivity extends Activity {
                             // in-layout UI controls at the bottom of the
                             // screen.
                             if (mControlsHeight == 0) {
-                                //TODO
                                 mControlsHeight = contentView.getHeight();
                             }
                             if (mShortAnimTime == 0) {
                                 mShortAnimTime = getResources().getInteger(
                                         android.R.integer.config_shortAnimTime);
                             }
-                            //TODO
                             /*contentView.animate()
                                     .translationY(visible ? 0 : mControlsHeight)
                                     .setDuration(mShortAnimTime);*/
@@ -247,7 +221,6 @@ public class FullscreenActivity extends Activity {
                             // If the ViewPropertyAnimator APIs aren't
                             // available, simply show or hide the in-layout UI
                             // controls.
-                            //TODO
                             contentView.setVisibility(visible ? View.VISIBLE : View.GONE);
                         }
 
@@ -269,13 +242,6 @@ public class FullscreenActivity extends Activity {
                 }*/
             }
         });
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        //TODO
-        //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-
         newGame();
     }
 
@@ -321,16 +287,20 @@ public class FullscreenActivity extends Activity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
+    /**
+     * Creates a toast message
+     *
+     * @param msg - The message to be displayed.
+     */
     public void makeToast(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 
+    //Initialize things To create a new game
     private void newGame() {
-        /**
-         * Initialize things
-         */
         controller = Controller.instance();
         controller.setFullscreenActivity(this);
+        guessedCorrectly = new boolean[7];
         switch (selectedLanguage.getText().toString()) {
             case "Telugu":
                 try {
@@ -347,11 +317,7 @@ public class FullscreenActivity extends Activity {
                 }
         }
         controller.setLanguage(language);
-        try {
-            controller.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        controller.start();
         font = language.getFont();
         wordsAndClues = controller.getWordsAndClues();
         tiles = controller.getTiles();
@@ -360,6 +326,38 @@ public class FullscreenActivity extends Activity {
         }
         loadClues();
         reloadTiles(true);
+    }
+
+    /*
+     *initiates a guess
+     */
+    private void guess() {
+        String guess = textView1.getText().toString();
+        for (int i = 0; i < wordsAndClues.size(); i++) {
+            if (!guessedCorrectly[i]) {
+                if (guess.equals(wordsAndClues.get(i).get(0))) {
+                    guessedCorrectly[i] = true;
+                    //check for win
+                    boolean won = true;
+                    for (int j = 0; j < guessedCorrectly.length; j++) {
+                        if (!guessedCorrectly[j]) {
+                            won = false;
+                        }
+                    }
+                    if (won) {
+                        makeToast("Congratulations, You won!");
+                    }
+                    for (Button b : tileButtons) {
+                        if (b.getVisibility() == View.INVISIBLE) {
+                            b.setText("");
+                        }
+                    }
+                }
+            }
+        }
+        textView1.setText("");
+        loadClues();
+        reloadTiles(false);
     }
 
     /*
@@ -412,8 +410,12 @@ public class FullscreenActivity extends Activity {
     }
 
     /**
+     * Uses passed strings to create InputStrams
      *
+     * @param path The path to the resource to be accessed
+     * @return Access to the resource in the form of an InputStream
      */
+
     public static InputStream assetToInputStream(String path) {
         InputStream is = null;
         try {

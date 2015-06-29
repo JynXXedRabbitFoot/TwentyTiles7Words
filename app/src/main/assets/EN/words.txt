@@ -12,4 +12,21 @@ CHERRY,Small red fruit
 MEGABYTE,Computer memory unit	
 GLUTEN,substance in wheat	
 MEMOIR,personal narrative	
-COUNTDOWN,launch preceder	
+COUNTDOWN,launch preceder
+ARENA, Stadium relative
+TABLE, Concise list
+ALONE, One way to go it
+ERASE, Rub out
+OPERA, Soap ___
+ENTER, Key in
+WASHINGTON, Hero of the American Revolution
+ADAMS, John Quincy
+BUSH, George W.
+BALLOT, List of choices
+NEST, Snug spot
+MYRRH, Old Christmas gift
+END, Come to a conclusion
+ARRIVE, Make it a river in turmoil
+UNSHAVED, Growing a beard
+REDUCES, Loses weight
+CHAPS, Leg coverings

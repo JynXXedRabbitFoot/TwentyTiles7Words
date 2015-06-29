@@ -1,10 +1,9 @@
 package com.example.sp_root.twentytiles7words;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * This controller interfaces between the 7LW GUI and Model.
+ * This Singleton controller interfaces between the GUI and Model.
  *
  * @author Dan KRuse
  */
@@ -16,9 +15,17 @@ public class Controller {
     private static Controller controller;
     FullscreenActivity fullscreenActivity;
 
+    /*
+    Singleton design pattern
+     */
     private Controller() {
     }
 
+    /**
+     * Accessor for the static instance of this controller.
+     *
+     * @return
+     */
     public static Controller instance() {
         if (null == controller) {
             controller = new Controller();
@@ -26,13 +33,10 @@ public class Controller {
         return controller;
     }
 
-    /*public Controller(Language language, FullscreenActivity fullscreenActivity) throws IOException {
-        this.language = language;
-        this.fullscreenActivity = fullscreenActivity;
-        start();
-    }*/
-
-    public void start() throws IOException {
+    /**
+     * Creates a new model
+     */
+    public void start() {
         Model7LW puzzle = null;
         try {
             puzzle = new Model7LW(language);
@@ -45,6 +49,12 @@ public class Controller {
         tiles = puzzle.getTiles();
     }
 
+    /**
+     * Chained Method. Calls the same method in the FullScreenActivity class to make a toast.
+     * Located here because any class can access an instance of this class.
+     *
+     * @param msg
+     */
     public void makeToast(String msg) {
         fullscreenActivity.makeToast(msg);
     }
@@ -55,10 +65,6 @@ public class Controller {
 
     public void setLanguage(Language language) {
         this.language = language;
-    }
-
-    public FullscreenActivity getFullscreenActivity() {
-        return fullscreenActivity;
     }
 
     public void setFullscreenActivity(FullscreenActivity fullscreenActivity) {

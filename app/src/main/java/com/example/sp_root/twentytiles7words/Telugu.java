@@ -14,15 +14,14 @@ import java.util.LinkedList;
 /**
  * Class Used in working with the Telugu language
  *
- * @author Dan Kruse 9-3-14
+ * @author Dan Kruse
  */
 
 public class Telugu extends Language {
     InputStream letterDefinition = FullscreenActivity.assetToInputStream("TE/Telugu.txt");
     ;
 
-    // Contains the Unicode for the halant character
-    // which is used to combine consonants.
+    // Contains the Unicode for the halant character which is used to combine consonants.
     // (this is for consonant blends)
     private Letter halant;
 
@@ -34,13 +33,6 @@ public class Telugu extends Language {
 
     // Contains the largest size of a transliterate character.
     private int maxTransliterateSize = 0;
-
-    // Contains the name of the recommended font to be used by client.
-    // Telugu.txt unicode configuration file has the Font name in the first line
-    private String recommendedFont = "";
-
-    // turn this to false, if you don't want the clutter of system.out.printlns
-    boolean debug = false;
 
     BufferedReader br;
 
@@ -70,8 +62,7 @@ public class Telugu extends Language {
      *
      * @param text A String in a native script to be parsed into individual
      *             characters.
-     * @return Returns a LinkedList containing a list of the characters parsed
-     * from the specified string.
+     * @return - An ArrayList of the characters parsed from the specified string.
      */
 
     public ArrayList<String> splitToLogicalCharacters(String text) {
@@ -162,28 +153,6 @@ public class Telugu extends Language {
     }
 
     /**
-     * Gets this Languages Alphabet.
-     *
-     * @return - The Alphabet in the form of an arraylist.
-     */
-    public ArrayList<Letter> getAlphabet() {
-        return new ArrayList<Letter>(alphabet);
-    }
-
-    public Letter getHalant() {
-        return halant;
-    }
-
-    /**
-     * Returns the name of recommended Font.
-     *
-     * @return Returns a string containing the name of recommended Font.
-     */
-    public String getRecommendedFontName() {
-        return recommendedFont;
-    }
-
-    /**
      * This method returns the length of logical characters in a Telugu String
      *
      * @param phrase - The phrase to count characters for.
@@ -194,109 +163,108 @@ public class Telugu extends Language {
         return logical_char_array.size();
     }
 
+    /*
+     *Loads letter information from an inputStream,
+     * creates Letters, and adds them to an alphabet.
+     * @param filename - the InputStream to read data from
+     * @throws Exception - Error reading from the file.
+     */
     private void loadTransliterationData(InputStream filename) throws Exception {
         // Used to store the line being read.
-        String[] get_line;
-        //BufferedReader br;
+        String[] currentLine;
         try {
             br = new BufferedReader(new InputStreamReader(filename, "UTF8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
         alphabet = new ArrayList<Letter>();
 
-        // Reads file line by line.
-        String line;
         try {
+            String line;
             while ((line = br.readLine()) != null) {
                 // use space as separator, split lines to ArrayLists
 
-                get_line = line.trim().split("\\s+");
+                currentLine = line.trim().split("\\s+");
 
                 // Checks that it isn't empty and stores line.
-                if (get_line.length > 0) {
+                if (currentLine.length > 0) {
 
-                    // Stores the recommended font name.
-                    if (get_line[0].toLowerCase().equals("font")) {
-                        recommendedFont = get_line[1];
-                        for (int i = 2; i < get_line.length; i++) {
-                            recommendedFont += " " + get_line[i];
+                    /* Stores the recommended font name.
+                    if (currentLine[0].toLowerCase().equals("font")) {
+                        recommendedFont = currentLine[1];
+                        for (int i = 2; i < currentLine.length; i++) {
+                            recommendedFont += " " + currentLine[i];
                         }
-                    }
+                    }*/
 
                     // Adds vowel to alphabet
-                    if (get_line[0].toLowerCase().equals("vowel")) {
-                        if (get_line.length == 3) {
-                            alphabet.add(new Letter(Letter.VOWEL, get_line[1],
-                                    hexToChar(get_line[2])));
+                    if (currentLine[0].toLowerCase().equals("vowel")) {
+                        if (currentLine.length == 3) {
+                            alphabet.add(new Letter(Letter.VOWEL, currentLine[1],
+                                    hexToChar(currentLine[2])));
                             maxTransliterateSize = Math.max(maxTransliterateSize,
-                                    get_line[1].length());
+                                    currentLine[1].length());
                             // Stores default vowel
                             if (defaultVowel == null) {
                                 defaultVowel = new Letter(Letter.VOWEL,
-                                        get_line[1], hexToChar(get_line[2]));
+                                        currentLine[1], hexToChar(currentLine[2]));
                             }
-                        } else if (get_line.length == 4) {
-                            alphabet.add(new Letter(Letter.VOWEL, get_line[1],
-                                    hexToChar(get_line[2]), hexToChar(get_line[3])));
+                        } else if (currentLine.length == 4) {
+                            alphabet.add(new Letter(Letter.VOWEL, currentLine[1],
+                                    hexToChar(currentLine[2]), hexToChar(currentLine[3])));
                             maxTransliterateSize = Math.max(maxTransliterateSize,
-                                    get_line[1].length());
+                                    currentLine[1].length());
                         }
                     }
 
                     // Adds consonant to alphabet
-                    else if (get_line[0].toLowerCase().equals("consonant")
-                            && get_line.length == 3) {
-                        alphabet.add(new Letter(Letter.CONSONANT, get_line[1],
-                                hexToChar(get_line[2])));
+                    else if (currentLine[0].toLowerCase().equals("consonant")
+                            && currentLine.length == 3) {
+                        alphabet.add(new Letter(Letter.CONSONANT, currentLine[1],
+                                hexToChar(currentLine[2])));
                         maxTransliterateSize = Math.max(maxTransliterateSize,
-                                get_line[1].length());
+                                currentLine[1].length());
                     }
 
-                    // Stores halant
-                    else if (get_line[0].toLowerCase().equals("halant")
-                            && get_line.length == 3 && halant == null) {
-                        halant = new Letter(Letter.HALANT, get_line[1],
-                                hexToChar(get_line[2]));
+                    // Adds halant to alphabet
+                    else if (currentLine[0].toLowerCase().equals("halant")
+                            && currentLine.length == 3 && halant == null) {
+                        halant = new Letter(Letter.HALANT, currentLine[1],
+                                hexToChar(currentLine[2]));
                         alphabet.add(halant);
                         maxTransliterateSize = Math.max(maxTransliterateSize,
-                                get_line[1].length());
+                                currentLine[1].length());
                     }
 
                     // Adds number to alphabet
-                    else if (get_line[0].toLowerCase().equals("number")
-                            && get_line.length == 3) {
-                        alphabet.add(new Letter(Letter.NUMBER, get_line[1],
-                                hexToChar(get_line[2])));
+                    else if (currentLine[0].toLowerCase().equals("number")
+                            && currentLine.length == 3) {
+                        alphabet.add(new Letter(Letter.NUMBER, currentLine[1],
+                                hexToChar(currentLine[2])));
                         maxTransliterateSize = Math.max(maxTransliterateSize,
-                                get_line[1].length());
+                                currentLine[1].length());
                     }
 
                     // Adds other characters to alphabet
-                    else if (get_line[0].toLowerCase().equals("other")
-                            && get_line.length == 3) {
-                        alphabet.add(new Letter(Letter.OTHER, get_line[1],
-                                hexToChar(get_line[2])));
+                    else if (currentLine[0].toLowerCase().equals("other")
+                            && currentLine.length == 3) {
+                        alphabet.add(new Letter(Letter.OTHER, currentLine[1],
+                                hexToChar(currentLine[2])));
                         maxTransliterateSize = Math.max(maxTransliterateSize,
-                                get_line[1].length());
+                                currentLine[1].length());
                     }
 
                     // Adds equivalents to equivalent list
-                    else if (get_line[0].toLowerCase().equals("equivalent")
-                            && get_line.length == 3) {
-                        // To DO
+                    else if (currentLine[0].toLowerCase().equals("equivalent")
+                            && currentLine.length == 3) {
+                        // TODO
                     }
                 }
             }
         } catch (IOException e) {
             Controller.instance().makeToast("There Was An Error Reading Valid Data From The File.");
             throw new Exception("File read error");
-
         }
-
-        // Close file
-        //input.close();
     }
 
     /*
@@ -314,9 +282,9 @@ public class Telugu extends Language {
      * Searches the alphabet for Dependent Unicode that match the specified
      * Unicode value.
      *
-     * @param unicode A Unicode value that is being searched for.
+     * @param unicode - A Unicode value that is being searched for.
      *
-     * @return Returns the index if a match is found or -1 if no match is found.
+     * @return - Returns the index if a match is found or -1 if no match is found.
      */
     private int searchDependentUnicode(char unicode) {
         // Iterates through each letter in the alphabet searching for a match.
